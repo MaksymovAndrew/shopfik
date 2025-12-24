@@ -1,49 +1,39 @@
-import { useEffect } from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './store/store';
 import AppNavigator from './navigation/AppNavigator';
+import LoadingScreen from './components/LoadingScreen';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+    const [isRehydrated, setIsRehydrated] = useState(false);
     const [fontsLoaded] = useFonts({
         'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
         'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
         'Montserrat-SemiBold': require('./assets/fonts/Montserrat-SemiBold.ttf'),
     });
 
+    const isAppReady = fontsLoaded && isRehydrated;
+
     useEffect(() => {
-        if (fontsLoaded) {
+        if (isAppReady) {
             SplashScreen.hideAsync();
         }
-    }, [fontsLoaded]);
+    }, [isAppReady]);
 
     if (!fontsLoaded) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator
-                    size="large"
-                    color="#667eea"
-                />
-            </View>
-        );
+        return <LoadingScreen />;
     }
 
     return (
         <Provider store={store}>
-            <AppNavigator />
+            <PersistGate loading={<LoadingScreen />} persistor={persistor} onBeforeLift={() => setIsRehydrated(true)}>
+                <AppNavigator />
+            </PersistGate>
         </Provider>
     );
 }
-
-const styles = StyleSheet.create({
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-});

@@ -1,6 +1,6 @@
 {
     "name": "shopfik",
-    "version": "2.8.0",
+    "version": "2.8.1",
     "main": "index.ts",
     "scripts": {
         "start": "expo start",
@@ -24,7 +24,8 @@
         "react-native-screens": "~4.16.0",
         "react-native-svg": "15.12.1",
         "react-redux": "^9.2.0",
-        "redux": "^5.0.1"
+        "redux": "^5.0.1",
+        "redux-persist": "^6.0.0"
     },
     "devDependencies": {
         "@types/react": "~19.1.0",
