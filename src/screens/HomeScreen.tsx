@@ -5,7 +5,7 @@ const HomeScreen = () => {
     return (
         <SafeAreaView
             style={styles.container}
-            edges={['top']}
+            edges={[]}
         >
             <Text style={styles.heading}>Shopfik</Text>
             <Text style={styles.subheading}>Welcome to the store</Text>

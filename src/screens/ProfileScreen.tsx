@@ -5,7 +5,7 @@ const ProfileScreen = () => {
     return (
         <SafeAreaView
             style={styles.container}
-            edges={['top']}
+            edges={[]}
         >
             <Text style={styles.text}>Profile Screen</Text>
         </SafeAreaView>

@@ -5,7 +5,7 @@ const CartScreen = () => {
     return (
         <SafeAreaView
             style={styles.container}
-            edges={['top']}
+            edges={[]}
         >
             <Text style={styles.text}>Cart Screen</Text>
         </SafeAreaView>

@@ -5,7 +5,7 @@ const CategoriesScreen = () => {
     return (
         <SafeAreaView
             style={styles.container}
-            edges={['top']}
+            edges={[]}
         >
             <Text style={styles.text}>Categories Screen</Text>
         </SafeAreaView>
