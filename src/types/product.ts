@@ -1,9 +1,11 @@
+export type Category = 'tshirt' | 'pants' | 'shoes';
+
 export interface Product {
     id: string;
     name: string;
     price: number;
     image: string;
-    category: 'tshirt' | 'pants' | 'shoes';
+    category: Category;
     description: string;
     sizes: string[];
 }

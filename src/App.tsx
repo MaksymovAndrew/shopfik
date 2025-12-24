@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 import AppNavigator from './navigation/AppNavigator';
 
 SplashScreen.preventAutoHideAsync();
@@ -30,7 +32,11 @@ export default function App() {
         );
     }
 
-    return <AppNavigator />;
+    return (
+        <Provider store={store}>
+            <AppNavigator />
+        </Provider>
+    );
 }
 
 const styles = StyleSheet.create({
